@@ -35,16 +35,29 @@
   }
 
   * {
-    @apply border-border selection:bg-neon-blue/10 selection:text-white;
+    @apply border-border selection:bg-neon-blue/10 selection:text-white font-helvetica;
   }
   
   body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    @apply bg-background text-foreground antialiased overflow-x-hidden font-helvetica;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    letter-spacing: -0.01em;
   }
 
   html {
     @apply scroll-smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-helvetica font-medium tracking-tight;
+  }
+
+  p {
+    @apply font-helvetica leading-relaxed;
+  }
+
+  button {
+    @apply font-helvetica font-medium;
   }
 }
 
@@ -76,13 +89,25 @@
     @apply h-full transition-all duration-500 ease-out;
   }
   
-  /* New infographic-specific components */
+  /* Professional card styles */
+  .professional-card {
+    @apply glass-card rounded-lg transition-all duration-300 hover:shadow-xl;
+  }
+  
+  /* Refined button styles */
+  .professional-button {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-300 
+           shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-offset-2 
+           focus:ring-neon-blue;
+  }
+  
+  /* Floating element styles */
   .floating-element {
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
   
   .floating-element:hover {
-    transform: scale(1.1) !important;
+    transform: scale(1.05) !important;
     z-index: 10;
   }
   
@@ -114,7 +139,16 @@
     transform: translateZ(0);
   }
   
-  /* New glow utilities for infographics */
+  /* Professional text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Glow utilities for infographics */
   .glow-sm {
     filter: drop-shadow(0 0 2px currentColor);
   }

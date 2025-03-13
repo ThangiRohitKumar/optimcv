@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+				helvetica: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
