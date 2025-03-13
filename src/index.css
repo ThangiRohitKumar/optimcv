@@ -25,6 +25,13 @@
     --input: 240 3.7% 15.9%;
     --ring: 180 100% 50%;
     --radius: 0.75rem;
+    
+    /* Neon colors for infographics */
+    --colors-neon-cyan: #00FFFF;
+    --colors-neon-blue: #0080FF;
+    --colors-neon-magenta: #FF00FF;
+    --colors-neon-green: #39FF14;
+    --colors-neon-yellow: #FFFF00;
   }
 
   * {
@@ -32,7 +39,7 @@
   }
   
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
@@ -68,6 +75,28 @@
   .progress-value {
     @apply h-full transition-all duration-500 ease-out;
   }
+  
+  /* New infographic-specific components */
+  .floating-element {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  
+  .floating-element:hover {
+    transform: scale(1.1) !important;
+    z-index: 10;
+  }
+  
+  .infographic-data-point {
+    @apply relative rounded-full flex items-center justify-center overflow-hidden;
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .data-line {
+    @apply absolute opacity-20;
+    background: linear-gradient(90deg, theme('colors.neon.cyan'), theme('colors.neon.magenta'));
+    height: 1px;
+    transform-origin: left center;
+  }
 }
 
 @layer utilities {
@@ -83,5 +112,28 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transform: translateZ(0);
+  }
+  
+  /* New glow utilities for infographics */
+  .glow-sm {
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+  
+  .glow-md {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  
+  .glow-lg {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  
+  .animate-float {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
   }
 }

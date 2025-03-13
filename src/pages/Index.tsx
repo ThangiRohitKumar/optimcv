@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import FileUpload from '@/components/FileUpload';
@@ -6,6 +5,7 @@ import JobDescription from '@/components/JobDescription';
 import KeywordExtraction from '@/components/KeywordExtraction';
 import AtsScoreCard from '@/components/AtsScoreCard';
 import ResumePreview from '@/components/ResumePreview';
+import BackgroundInfographics from '@/components/BackgroundInfographics';
 import { extractKeywords, calculateKeywordMatch } from '@/utils/keywordExtractor';
 import { calculateAtsScore, generateOptimizedResume } from '@/utils/atsScoreCalculator';
 import { parseResumeFromFile } from '@/utils/resumeParser';
@@ -27,7 +27,6 @@ const Index = () => {
   const [isOptimizing, setIsOptimizing] = useState<boolean>(false);
   const [activeStep, setActiveStep] = useState<number>(1);
 
-  // Process job description to extract keywords
   useEffect(() => {
     if (jobDescription.length > 50) {
       const extractedKeywords = extractKeywords(jobDescription);
@@ -40,7 +39,6 @@ const Index = () => {
     }
   }, [jobDescription, resumeContent]);
 
-  // Handle resume file upload
   const handleFileUpload = async (file: File) => {
     try {
       setIsLoading(true);
@@ -53,7 +51,6 @@ const Index = () => {
         setAtsScore(score);
       }
       
-      // Auto-advance to step 2
       setActiveStep(2);
     } catch (error) {
       console.error('Error processing file:', error);
@@ -62,21 +59,17 @@ const Index = () => {
     }
   };
 
-  // Handle job description changes
   const handleDescriptionChange = (text: string) => {
     setJobDescription(text);
     
-    // Auto-advance to step 3 if we have both resume and description
     if (text.length > 50 && resumeContent) {
       setActiveStep(3);
     }
   };
 
-  // Optimize resume
   const handleOptimize = () => {
     setIsOptimizing(true);
     
-    // Simulate processing delay for better UX
     setTimeout(() => {
       const optimized = generateOptimizedResume(resumeContent, keywords);
       setOptimizedContent(optimized);
@@ -88,9 +81,7 @@ const Index = () => {
     }, 1500);
   };
 
-  // Handle keyword click (for future enhancements)
   const handleKeywordClick = (keyword: Keyword) => {
-    // This could be used to highlight where a keyword appears in the resume
     console.log('Keyword clicked:', keyword);
   };
 
@@ -117,7 +108,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Hero section with gradient background */}
+      <BackgroundInfographics />
+      
       <div className="relative w-full overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,255,255,0.1),transparent_60%)]"></div>
         <Navbar />
@@ -177,7 +169,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Step indicators */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step) => (
@@ -221,10 +212,8 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Main application */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left column - Input */}
           <div className="space-y-8">
             <div className={cn(
               "transition-all duration-500",
@@ -273,7 +262,6 @@ const Index = () => {
             </div>
           </div>
           
-          {/* Right column - Results */}
           <div className="space-y-8">
             {keywords.length > 0 && resumeContent && (
               <AtsScoreCard 
@@ -291,7 +279,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* How it works section */}
       <div 
         id="how-it-works" 
         className="max-w-7xl mx-auto px-6 py-20 mt-12"
@@ -336,7 +323,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Footer */}
       <footer className="border-t border-white/10 mt-20">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -420,3 +406,4 @@ export default Index;
 function cn(...inputs: any[]) {
   return inputs.filter(Boolean).join(" ");
 }
+
