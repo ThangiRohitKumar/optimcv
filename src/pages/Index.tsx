@@ -343,7 +343,7 @@ const Index = () => {
             <div className="mb-6 md:mb-0">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-xl font-bold text-white text-glow">
-                  Resume<span className="text-neon-cyan">Optimizer</span>
+                  Optim<span className="text-neon-cyan">CV</span>
                 </span>
               </div>
               <p className="text-white/50 text-sm max-w-xs">
@@ -383,7 +383,7 @@ const Index = () => {
           
           <div className="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/50 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} ResumeOptimizer. All rights reserved.
+              © {new Date().getFullYear()} OptimCV. All rights reserved.
             </p>
             
             <div className="flex gap-6">
