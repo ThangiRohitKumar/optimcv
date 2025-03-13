@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ className }) => {
         <div className="flex items-center gap-2">
           <div className="relative">
             <span className="text-xl font-bold text-white text-glow">
-              Resume<span className="text-neon-cyan">Optimizer</span>
+              Optim<span className="text-neon-cyan">CV</span>
             </span>
           </div>
         </div>
